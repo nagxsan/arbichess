@@ -46,7 +46,7 @@ export default function Home() {
                 </DrawerDescription>
               </DrawerHeader>
               <DrawerFooter className="flex flex-row justify-between">
-                <Link href="/chess-delay" className="w-full">
+                <Link href={tool.pagePath} className="w-full">
                   <Button className="w-full max-w-xl cursor-pointer">
                     Next
                   </Button>

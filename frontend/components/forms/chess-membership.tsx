@@ -47,7 +47,7 @@ export function ChessMembershipForm() {
     toast(
       JSON.stringify({
         associations: values.associations,
-        file: values?.file,
+        file: values.file.name,
       })
     );
   }
@@ -111,7 +111,7 @@ export function ChessMembershipForm() {
         <FormField
           control={form.control}
           name="file"
-          render={({ field }) => (
+          render={({ field: { value, onChange, ...fieldProps } }) => (
             <FormItem>
               <FormLabel>File</FormLabel>
               <FormDescription className="whitespace-pre-line">{`Make sure the file follows these rules:
@@ -123,7 +123,13 @@ export function ChessMembershipForm() {
                 <Input
                   type="file"
                   accept=".xls,.xlsx"
-                  {...field}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      onChange(file);
+                    }
+                  }}
+                  {...fieldProps}
                 />
               </FormControl>
               <FormMessage />
